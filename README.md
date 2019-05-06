@@ -72,6 +72,8 @@ security related events.
 * [Multi Tenant User Management](src/main/java/sirius/biz/tenants)\
 Provides a database independent model to represent multiple tenants and users which have access to the system.
 Currently implementations for **JDBC** and for **MongoDB** are available.
+* [Retention Management Framework](src/main/java/sirius/biz/retention)\
+TBD
 * [Sequence Generators](src/main/java/sirius/biz/sequences)\
 Provides sequence generators for **JDBC** databases and **MongoDB**.
 * [Storage System](src/main/java/sirius/biz/storage)\
