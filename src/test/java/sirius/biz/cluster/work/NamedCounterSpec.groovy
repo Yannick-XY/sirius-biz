@@ -11,8 +11,10 @@ package sirius.biz.cluster.work
 
 import sirius.db.redis.Redis
 import sirius.kernel.BaseSpecification
+import sirius.kernel.InScenario
 import sirius.kernel.di.std.Part
 
+@InScenario(InScenario.MAIN)
 class NamedCounterSpec extends BaseSpecification {
 
     @Part

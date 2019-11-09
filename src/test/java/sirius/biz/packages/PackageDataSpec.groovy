@@ -9,7 +9,9 @@
 package sirius.biz.packages
 
 import sirius.kernel.BaseSpecification
+import sirius.kernel.InScenario
 
+@InScenario(InScenario.MAIN)
 class PackageDataSpec extends BaseSpecification {
 
     def "test hasPermission returns true for permission granted by upgrades"() {

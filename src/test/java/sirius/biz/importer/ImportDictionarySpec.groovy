@@ -11,9 +11,11 @@ package sirius.biz.importer
 import sirius.biz.importer.format.FieldDefinition
 import sirius.biz.importer.format.ImportDictionary
 import sirius.kernel.BaseSpecification
+import sirius.kernel.InScenario
 import sirius.kernel.commons.Tuple
 import sirius.kernel.commons.Values
 
+@InScenario(InScenario.MAIN)
 class ImportDictionarySpec extends BaseSpecification {
 
     def "detectHeaderProblems detects a skipped column"() {

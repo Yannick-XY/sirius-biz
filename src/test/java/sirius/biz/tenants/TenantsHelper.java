@@ -40,9 +40,6 @@ public class TenantsHelper {
     @Part
     private static SQLTenants tenants;
 
-    private static SQLTenant testTenant;
-    private static SQLUserAccount testUser;
-
     private TenantsHelper() {
     }
 
@@ -63,7 +60,7 @@ public class TenantsHelper {
     private static void setupTestTenant() {
         oma.getReadyFuture().await(Duration.ofSeconds(60));
 
-        testTenant = oma.select(SQLTenant.class).eq(Tenant.TENANT_DATA.inner(TenantData.NAME), "Test").queryFirst();
+        SQLTenant testTenant = oma.select(SQLTenant.class).eq(Tenant.TENANT_DATA.inner(TenantData.NAME), "Test").queryFirst();
         if (testTenant == null) {
             testTenant = new SQLTenant();
             testTenant.getTenantData().setName("Test");
@@ -75,7 +72,7 @@ public class TenantsHelper {
     private static void setupTestUser() {
         oma.getReadyFuture().await(Duration.ofSeconds(60));
 
-        testUser = oma.select(SQLUserAccount.class)
+        SQLUserAccount testUser = oma.select(SQLUserAccount.class)
                       .eq(UserAccount.USER_ACCOUNT_DATA.inner(UserAccountData.LOGIN).inner(LoginData.USERNAME), "test")
                       .queryFirst();
         if (testUser == null) {
@@ -112,10 +109,14 @@ public class TenantsHelper {
      * @return Tenant for tests
      */
     public static SQLTenant getTestTenant() {
-        if (testTenant != null) {
-            return testTenant;
+        SQLTenant testTenant = oma.select(SQLTenant.class).eq(Tenant.TENANT_DATA.inner(TenantData.NAME), "Test").queryFirst();
+        if (testTenant == null) {
+            testTenant = new SQLTenant();
+            testTenant.getTenantData().setName("Test");
+            testTenant.getTenantData().getPackageData().getAdditionalPermissions().addAll(features);
+            oma.update(testTenant);
         }
-        setupTestTenant();
+
         return testTenant;
     }
 
@@ -127,10 +128,19 @@ public class TenantsHelper {
      * @return UserAccount for tests
      */
     public static SQLUserAccount getTestUser() {
-        if (testUser != null) {
-            return testUser;
+        SQLUserAccount testUser = oma.select(SQLUserAccount.class)
+                                     .eq(UserAccount.USER_ACCOUNT_DATA.inner(UserAccountData.LOGIN).inner(LoginData.USERNAME), "test")
+                                     .queryFirst();
+        if (testUser == null) {
+            testUser = new SQLUserAccount();
+            testUser.getTenant().setValue(getTestTenant());
+            testUser.getUserAccountData().getLogin().setUsername("test");
+            testUser.getUserAccountData().getLogin().setCleartextPassword("test");
+            testUser.getUserAccountData().getPermissions().getPermissions().addAll(roles);
+            testUser.getUserAccountData().setEmail("test@test.test");
+            oma.update(testUser);
         }
-        setupTestUser();
+
         return testUser;
     }
 }

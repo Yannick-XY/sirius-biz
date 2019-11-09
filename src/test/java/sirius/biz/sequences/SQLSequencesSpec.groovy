@@ -8,8 +8,10 @@
 
 package sirius.biz.sequences
 
+import sirius.kernel.InScenario
 import sirius.kernel.di.Injector
 
+@InScenario("test-jdbc.conf")
 class SQLSequencesSpec extends SequencesSpec {
 
     def setupSpec() {

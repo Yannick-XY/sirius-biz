@@ -12,9 +12,11 @@ import com.google.common.base.Charsets
 import com.google.common.io.ByteStreams
 import com.google.common.io.Files
 import sirius.kernel.BaseSpecification
+import sirius.kernel.InScenario
 import sirius.kernel.commons.Tuple
 import sirius.kernel.di.std.Part
 
+@InScenario(InScenario.MAIN)
 class ObjectStoresSpec extends BaseSpecification {
 
     @Part

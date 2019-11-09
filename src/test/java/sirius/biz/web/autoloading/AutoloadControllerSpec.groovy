@@ -10,9 +10,11 @@ package sirius.biz.web.autoloading
 
 import sirius.db.mongo.Mango
 import sirius.kernel.BaseSpecification
+import sirius.kernel.InScenario
 import sirius.kernel.di.std.Part
 import sirius.web.http.TestRequest
 
+@InScenario(InScenario.MAIN)
 class AutoloadControllerSpec extends BaseSpecification {
 
     @Part

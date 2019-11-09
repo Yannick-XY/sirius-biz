@@ -336,6 +336,12 @@ public class Processes {
         standbyProcessCache.put(type + "-" + tenantId, process);
         return process;
     }
+//
+//    public void awaitCompletion(String processId) {
+//        while() {
+//
+//        }
+//    }
 
     /**
      * Resolves the given id into a process.
@@ -673,7 +679,7 @@ public class Processes {
      * @throws sirius.kernel.health.HandledException in case of an error which occurred while executing the task
      */
     private void execute(String processId, Consumer<ProcessContext> task, boolean complete) {
-        awaitProcess(processId);
+        awaitProcessExistence(processId);
         TaskContext taskContext = TaskContext.get();
         UserContext userContext = UserContext.get();
 
@@ -713,7 +719,7 @@ public class Processes {
      *
      * @param processId the process to check
      */
-    private void awaitProcess(String processId) {
+    private void awaitProcessExistence(String processId) {
         int attempts = 4;
         while (attempts-- > 0) {
             if (fetchProcess(processId).isPresent()) {

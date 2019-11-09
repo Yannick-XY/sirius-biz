@@ -11,10 +11,12 @@ package sirius.biz.storage.layer1
 import com.google.common.base.Charsets
 import com.google.common.io.ByteStreams
 import sirius.kernel.BaseSpecification
+import sirius.kernel.InScenario
 import sirius.kernel.di.std.Part
 
 import java.nio.file.Files
 
+@InScenario(InScenario.MAIN)
 class ObjectStorageSpec extends BaseSpecification {
 
     @Part

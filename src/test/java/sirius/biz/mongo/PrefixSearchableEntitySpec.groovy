@@ -11,8 +11,10 @@ package sirius.biz.mongo
 import sirius.db.mongo.Mango
 import sirius.db.mongo.QueryBuilder
 import sirius.kernel.BaseSpecification
+import sirius.kernel.InScenario
 import sirius.kernel.di.std.Part
 
+@InScenario(InScenario.MAIN)
 class PrefixSearchableEntitySpec extends BaseSpecification {
 
     @Part

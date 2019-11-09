@@ -8,10 +8,13 @@
 
 import com.googlecode.junittoolbox.SuiteClasses;
 import org.junit.runner.RunWith;
+import sirius.kernel.Scenario;
 import sirius.kernel.ScenarioSuite;
+import sirius.kernel.Scenarios;
 
 @RunWith(ScenarioSuite.class)
 @SuiteClasses({"**/*Test.class", "**/*Spec.class"})
+@Scenarios({@Scenario(file = "test-jdbc.conf"), @Scenario(file = "test-mongo.conf")})
 public class TestSuite {
 
 }

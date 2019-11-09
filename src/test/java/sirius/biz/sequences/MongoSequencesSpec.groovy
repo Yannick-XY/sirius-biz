@@ -9,9 +9,11 @@
 package sirius.biz.sequences
 
 import sirius.db.mongo.Mango
+import sirius.kernel.InScenario
 import sirius.kernel.di.Injector
 import sirius.kernel.di.std.Part
 
+@InScenario("test-mongo.conf")
 class MongoSequencesSpec extends SequencesSpec {
 
     @Part

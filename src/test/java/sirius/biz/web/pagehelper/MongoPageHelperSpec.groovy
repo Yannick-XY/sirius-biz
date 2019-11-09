@@ -11,10 +11,12 @@ package sirius.biz.web.pagehelper
 import sirius.biz.web.MongoPageHelper
 import sirius.db.mongo.Mango
 import sirius.kernel.BaseSpecification
+import sirius.kernel.InScenario
 import sirius.kernel.async.CallContext
 import sirius.kernel.di.std.Part
 import sirius.web.http.WebContext
 
+@InScenario("test-mongo.conf")
 class MongoPageHelperSpec extends BaseSpecification {
 
     @Part

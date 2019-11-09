@@ -14,7 +14,7 @@ import sirius.kernel.health.HandledException
 
 import java.util.concurrent.ThreadLocalRandom
 
-class SequencesSpec extends BaseSpecification {
+abstract class SequencesSpec extends BaseSpecification {
 
     @Part
     protected static Sequences sequences

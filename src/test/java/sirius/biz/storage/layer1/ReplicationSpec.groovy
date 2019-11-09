@@ -13,6 +13,7 @@ import com.google.common.io.CharStreams
 import sirius.biz.storage.layer1.replication.ReplicationBackgroundLoop
 import sirius.biz.storage.layer1.replication.ReplicationManager
 import sirius.kernel.BaseSpecification
+import sirius.kernel.InScenario
 import sirius.kernel.Scope
 import sirius.kernel.async.BackgroundLoop
 import sirius.kernel.di.std.Part
@@ -20,6 +21,7 @@ import sirius.kernel.di.std.Part
 import java.time.Duration
 
 @Scope(Scope.SCOPE_NIGHTLY)
+@InScenario(["test-jdbc.conf", "test-mongo.conf"])
 class ReplicationSpec extends BaseSpecification {
 
     @Part

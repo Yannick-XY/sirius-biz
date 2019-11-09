@@ -11,11 +11,13 @@ package sirius.biz.analytics.events
 
 import sirius.db.jdbc.Databases
 import sirius.kernel.BaseSpecification
+import sirius.kernel.InScenario
 import sirius.kernel.async.BackgroundLoop
 import sirius.kernel.di.std.Part
 
 import java.time.Duration
 
+@InScenario(InScenario.MAIN)
 class EventRecorderSpec extends BaseSpecification {
 
     @Part

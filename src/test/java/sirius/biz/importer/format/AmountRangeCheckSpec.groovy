@@ -8,11 +8,13 @@
 
 package sirius.biz.importer.format
 
+import sirius.kernel.InScenario
 import sirius.kernel.commons.Amount
 import sirius.kernel.commons.NumberFormat
 import sirius.kernel.commons.Value
 import spock.lang.Specification
 
+@InScenario(InScenario.MAIN)
 class AmountRangeCheckSpec extends Specification {
 
     def "values below the inclusive lower limit are correctly marked as invalid"() {

@@ -8,8 +8,10 @@
 
 package sirius.biz.locks
 
+import sirius.kernel.InScenario
 import sirius.kernel.di.Injector
 
+@InScenario(InScenario.MAIN)
 class JavaLocksSpec extends LocksSpec {
 
     def setupSpec() {

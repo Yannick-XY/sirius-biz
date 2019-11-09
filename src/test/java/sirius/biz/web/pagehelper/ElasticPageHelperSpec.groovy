@@ -11,10 +11,12 @@ package sirius.biz.web.pagehelper
 import sirius.biz.web.ElasticPageHelper
 import sirius.db.es.Elastic
 import sirius.kernel.BaseSpecification
+import sirius.kernel.InScenario
 import sirius.kernel.async.CallContext
 import sirius.kernel.di.std.Part
 import sirius.web.http.WebContext
 
+@InScenario(InScenario.MAIN)
 class ElasticPageHelperSpec extends BaseSpecification {
 
     @Part
@@ -51,7 +53,8 @@ class ElasticPageHelperSpec extends BaseSpecification {
 
     def "test boolean aggregation without value selected"() {
         given:
-        ElasticPageHelper<ElasticPageHelperEntity> ph = ElasticPageHelper.withQuery(elastic.select(ElasticPageHelperEntity.class))
+        ElasticPageHelper<ElasticPageHelperEntity> ph = ElasticPageHelper.
+                withQuery(elastic.select(ElasticPageHelperEntity.class))
         WebContext wc = CallContext.getCurrent().get(WebContext.class)
         wc.queryString = [:]
         ph.withContext(wc)
@@ -78,7 +81,8 @@ class ElasticPageHelperSpec extends BaseSpecification {
 
     def "test boolean aggregation with value selected"() {
         given:
-        ElasticPageHelper<ElasticPageHelperEntity> ph = ElasticPageHelper.withQuery(elastic.select(ElasticPageHelperEntity.class))
+        ElasticPageHelper<ElasticPageHelperEntity> ph = ElasticPageHelper.
+                withQuery(elastic.select(ElasticPageHelperEntity.class))
         WebContext wc = CallContext.getCurrent().get(WebContext.class)
         wc.queryString = ["booleanField": [1]]
         ph.withContext(wc)

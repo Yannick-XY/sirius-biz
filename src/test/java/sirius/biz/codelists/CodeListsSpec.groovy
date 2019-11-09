@@ -8,31 +8,22 @@
 
 package sirius.biz.codelists
 
-import sirius.biz.codelists.jdbc.SQLCodeListEntry
 import sirius.biz.tenants.TenantsHelper
-import sirius.db.jdbc.OMA
 import sirius.kernel.BaseSpecification
+import sirius.kernel.InScenario
 import sirius.kernel.di.std.Part
 
-import java.time.Duration
-
+@InScenario(["test-jdbc.conf", "test-mongo.conf"])
 class CodeListsSpec extends BaseSpecification {
 
     @Part
     private static CodeLists cl
 
-    @Part
-    private static OMA oma
-
-    def setupSpec() {
-        oma.getReadyFuture().await(Duration.ofSeconds(60))
-    }
-
     def "get entries of a code list works"() {
         given:
         TenantsHelper.installTestTenant()
         when:
-        List<SQLCodeListEntry> entries = cl.getEntries("test")
+        List<CodeListEntry> entries = cl.getEntries("test")
         then:
         entries.isEmpty()
     }

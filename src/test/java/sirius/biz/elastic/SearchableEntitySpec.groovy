@@ -10,9 +10,11 @@ package sirius.biz.elastic
 
 
 import sirius.kernel.BaseSpecification
+import sirius.kernel.InScenario
 
 import java.util.stream.Collectors
 
+@InScenario(InScenario.MAIN)
 class SearchableEntitySpec extends BaseSpecification {
 
     def "tokenizing works"() {

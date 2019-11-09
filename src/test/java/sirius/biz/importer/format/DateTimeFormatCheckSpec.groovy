@@ -8,9 +8,11 @@
 
 package sirius.biz.importer.format
 
+import sirius.kernel.InScenario
 import sirius.kernel.commons.Value
 import spock.lang.Specification
 
+@InScenario(InScenario.MAIN)
 class DateTimeFormatCheckSpec extends Specification {
 
     def "valid dates throws no exception"() {

@@ -10,10 +10,12 @@ package sirius.biz.isenguard
 
 
 import sirius.kernel.BaseSpecification
+import sirius.kernel.InScenario
 import sirius.kernel.di.std.Part
 
 import java.util.concurrent.atomic.AtomicInteger
 
+@InScenario(InScenario.MAIN)
 class IsenguardSpec extends BaseSpecification {
 
     @Part

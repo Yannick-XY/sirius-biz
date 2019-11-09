@@ -6,6 +6,7 @@ import sirius.biz.tenants.Tenant
 import sirius.biz.tenants.TenantsHelper
 import sirius.db.jdbc.OMA
 import sirius.kernel.BaseSpecification
+import sirius.kernel.InScenario
 import sirius.kernel.Sirius
 import sirius.kernel.di.std.Part
 import sirius.web.security.UserContext
@@ -15,6 +16,7 @@ import java.time.Duration
 /**
  * Provides tests for {@link sirius.biz.storage.versions.VersionedFiles}.
  */
+@InScenario(InScenario.MAIN)
 class VersionedFilesSpec extends BaseSpecification {
     @Part
     private static OMA oma

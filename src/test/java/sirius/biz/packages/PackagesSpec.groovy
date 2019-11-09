@@ -9,8 +9,10 @@
 package sirius.biz.packages
 
 import sirius.kernel.BaseSpecification
+import sirius.kernel.InScenario
 import sirius.kernel.di.std.Part
 
+@InScenario(InScenario.MAIN)
 class PackagesSpec extends BaseSpecification {
 
     @Part

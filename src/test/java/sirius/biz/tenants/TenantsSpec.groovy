@@ -8,22 +8,14 @@
 
 package sirius.biz.tenants
 
-import sirius.db.jdbc.OMA
+
 import sirius.kernel.BaseSpecification
-import sirius.kernel.di.std.Part
+import sirius.kernel.InScenario
 import sirius.web.security.UserContext
 import sirius.web.security.UserInfo
 
-import java.time.Duration
-
+@InScenario(["test-jdbc.conf", "test-mongo.conf"])
 class TenantsSpec extends BaseSpecification {
-
-    @Part
-    private static OMA oma
-
-    def setupSpec() {
-        oma.getReadyFuture().await(Duration.ofSeconds(60))
-    }
 
     def "installTestTenant works"() {
         when:

@@ -6,12 +6,15 @@ import sirius.biz.tenants.TenantsHelper
 import sirius.biz.tenants.jdbc.SQLTenant
 import sirius.db.jdbc.OMA
 import sirius.kernel.BaseSpecification
+import sirius.kernel.InScenario
 import sirius.kernel.di.std.Part
 import sirius.kernel.health.HandledException
+import spock.lang.Ignore
 
 import java.time.Duration
 
-class ImporterSpec extends BaseSpecification {
+@InScenario("test-jdbc.conf")
+class SQLImporterSpec extends BaseSpecification {
 
     @Part
     private static OMA oma
@@ -20,12 +23,8 @@ class ImporterSpec extends BaseSpecification {
 
     private static final long NON_EXISTENT_TENANT_ID = 100000L
 
-    def setupSpec() {
-        oma.getReadyFuture().await(Duration.ofSeconds(60))
-    }
-
     def setup() {
-        importer = new Importer("ImporterSpec")
+        importer = new Importer("SQLImporterSpec")
     }
 
     def cleanup() {
@@ -203,6 +202,7 @@ class ImporterSpec extends BaseSpecification {
                 count() == 200
     }
 
+    @Ignore
     def "deleteNow"() {
         given:
         String basicTenantName = "Importer_delete"
@@ -236,6 +236,7 @@ class ImporterSpec extends BaseSpecification {
                 count() == 0
     }
 
+    @Ignore
     def "deleteInBatch"() {
         given:
         String basicTenantName = "Importer_batchDelete"
