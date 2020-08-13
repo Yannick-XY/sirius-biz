@@ -27,7 +27,7 @@ import sirius.kernel.di.std.Register;
 /**
  * Provides an import handler for {@link SQLTranslation translations} of {@link SQLCodeListEntry code list entries}.
  */
-public class SQLTranslationImportHandler extends SQLEntityImportHandler<SQLTranslation> {
+public class SQLCodeListEntryTranslationImportHandler extends SQLEntityImportHandler<SQLTranslation> {
     @Part
     private static SQLCodeLists codeLists;
 
@@ -35,7 +35,7 @@ public class SQLTranslationImportHandler extends SQLEntityImportHandler<SQLTrans
      * Provides the factory to instantiate this import handler.
      */
     @Register(framework = SQLCodeLists.FRAMEWORK_CODE_LISTS_JDBC)
-    public static class SQLTranslationImportHandlerFactory implements ImportHandlerFactory {
+    public static class SQLCodeListEntryTranslationImportHandlerFactory implements ImportHandlerFactory {
 
         @Override
         public boolean accepts(Class<?> type, ImporterContext context) {
@@ -44,7 +44,7 @@ public class SQLTranslationImportHandler extends SQLEntityImportHandler<SQLTrans
 
         @Override
         public ImportHandler<?> create(Class<?> type, ImporterContext context) {
-            return new SQLTranslationImportHandler(type, context);
+            return new SQLCodeListEntryTranslationImportHandler(type, context);
         }
     }
 
@@ -54,7 +54,7 @@ public class SQLTranslationImportHandler extends SQLEntityImportHandler<SQLTrans
      * @param clazz   the type of entities being handled
      * @param context the import context to use
      */
-    protected SQLTranslationImportHandler(Class<?> clazz, ImporterContext context) {
+    protected SQLCodeListEntryTranslationImportHandler(Class<?> clazz, ImporterContext context) {
         super(clazz, context);
     }
 

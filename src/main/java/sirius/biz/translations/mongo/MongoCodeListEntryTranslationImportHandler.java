@@ -29,7 +29,7 @@ import java.util.Optional;
 /**
  * Provides an import handler for {@link MongoTranslation translations} of {@link MongoCodeListEntry code list entries}.
  */
-public class MongoTranslationImportHandler extends MongoEntityImportHandler<MongoTranslation> {
+public class MongoCodeListEntryTranslationImportHandler extends MongoEntityImportHandler<MongoTranslation> {
 
     @Part
     private static MongoCodeLists codeLists;
@@ -38,7 +38,7 @@ public class MongoTranslationImportHandler extends MongoEntityImportHandler<Mong
      * Provides the factory to instantiate this import handler.
      */
     @Register(framework = MongoCodeLists.FRAMEWORK_CODE_LISTS_MONGO)
-    public static class MongoTranslationImportHandlerFactory implements ImportHandlerFactory {
+    public static class MongoCodeListEntryTranslationImportHandlerFactory implements ImportHandlerFactory {
 
         @Override
         public boolean accepts(Class<?> type, ImporterContext context) {
@@ -47,7 +47,7 @@ public class MongoTranslationImportHandler extends MongoEntityImportHandler<Mong
 
         @Override
         public ImportHandler<?> create(Class<?> type, ImporterContext context) {
-            return new MongoTranslationImportHandler(type, context);
+            return new MongoCodeListEntryTranslationImportHandler(type, context);
         }
     }
 
@@ -57,7 +57,7 @@ public class MongoTranslationImportHandler extends MongoEntityImportHandler<Mong
      * @param clazz   the type of entities being handled
      * @param context the import context to use
      */
-    protected MongoTranslationImportHandler(Class<?> clazz, ImporterContext context) {
+    protected MongoCodeListEntryTranslationImportHandler(Class<?> clazz, ImporterContext context) {
         super(clazz, context);
     }
 

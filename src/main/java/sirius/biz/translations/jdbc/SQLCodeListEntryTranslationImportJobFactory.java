@@ -6,12 +6,13 @@
  * http://www.scireum.de - info@scireum.de
  */
 
-package sirius.biz.translations.mongo;
+package sirius.biz.translations.jdbc;
 
 import sirius.biz.codelists.CodeListController;
 import sirius.biz.codelists.CodeListEntry;
 import sirius.biz.codelists.jdbc.SQLCodeList;
-import sirius.biz.codelists.mongo.MongoCodeLists;
+import sirius.biz.codelists.jdbc.SQLCodeListEntry;
+import sirius.biz.codelists.jdbc.SQLCodeLists;
 import sirius.biz.importer.ImportContext;
 import sirius.biz.jobs.batch.file.EntityImportJobFactory;
 import sirius.biz.jobs.params.CodeListParameter;
@@ -27,22 +28,22 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 /**
- * Provides an import job for {@link MongoTranslation translations} of {@link sirius.biz.codelists.mongo.MongoCodeListEntry code list entries} stored in a JDBC database.
+ * Provides an import job for {@link SQLTranslation translations} of {@link SQLCodeListEntry code list entries} stored in a JDBC database.
  */
-@Register(framework = MongoCodeLists.FRAMEWORK_CODE_LISTS_MONGO)
+@Register(framework = SQLCodeLists.FRAMEWORK_CODE_LISTS_JDBC)
 @Permission(CodeListController.PERMISSION_MANAGE_CODELISTS)
-public class MongoTranslationImportJobFactory extends EntityImportJobFactory {
+public class SQLCodeListEntryTranslationImportJobFactory extends EntityImportJobFactory {
     private CodeListParameter codeListParameter = new CodeListParameter("codeList", "$CodeList").markRequired();
 
     @Override
     protected Class<? extends BaseEntity<?>> getImportType() {
-        return MongoTranslation.class;
+        return SQLTranslation.class;
     }
 
     @Nonnull
     @Override
     public String getName() {
-        return "import-mongo-translations";
+        return "import-sql-translations";
     }
 
     @Override
@@ -53,7 +54,6 @@ public class MongoTranslationImportJobFactory extends EntityImportJobFactory {
 
     @Override
     protected void transferParameters(ImportContext context, ProcessContext processContext) {
-        // sets "codelist" -> "$(code)" in context
         context.set(CodeListEntry.CODE_LIST, processContext.require(codeListParameter));
     }
 
