@@ -8,6 +8,7 @@
 
 package sirius.biz.translations;
 
+import sirius.biz.importer.AutoImport;
 import sirius.db.mixing.Composite;
 import sirius.db.mixing.Mapping;
 import sirius.db.mixing.annotations.Length;
@@ -22,6 +23,7 @@ public class TranslationData extends Composite {
      */
     public static final Mapping OWNER = Mapping.named("owner");
     @Length(255)
+    @AutoImport
     private String owner;
 
     /**
@@ -29,6 +31,7 @@ public class TranslationData extends Composite {
      */
     public static final Mapping FIELD = Mapping.named("field");
     @Length(255)
+    @AutoImport
     private String field;
 
     /**
@@ -36,6 +39,7 @@ public class TranslationData extends Composite {
      */
     public static final Mapping LANG = Mapping.named("lang");
     @Length(3)
+    @AutoImport
     private String lang;
 
     /**
@@ -43,6 +47,7 @@ public class TranslationData extends Composite {
      */
     public static final Mapping TEXT = Mapping.named("text");
     @Lob
+    @AutoImport
     private String text;
 
     public String getText() {
