@@ -63,17 +63,24 @@ public class MongoCodeListEntryTranslationImportHandler extends MongoEntityImpor
 
     @Override
     public Optional<MongoTranslation> tryFind(Context data) {
-        if (data.containsKey(Translation.TRANSLATION_DATA.inner(TranslationData.OWNER).getName())) {
-            return mango.select(MongoTranslation.class)
-                        .eq(Translation.TRANSLATION_DATA.inner(TranslationData.OWNER),
-                            data.get(Translation.TRANSLATION_DATA.inner(TranslationData.OWNER).getName()))
-                        .eq(Translation.TRANSLATION_DATA.inner(TranslationData.FIELD),
-                            data.get(Translation.TRANSLATION_DATA.inner(TranslationData.FIELD).getName()))
-                        .eq(Translation.TRANSLATION_DATA.inner(TranslationData.LANG),
-                            data.get(Translation.TRANSLATION_DATA.inner(TranslationData.LANG).getName()))
-                        .eq(Translation.TRANSLATION_DATA.inner(TranslationData.TEXT),
-                            data.get(Translation.TRANSLATION_DATA.inner(TranslationData.TEXT).getName()))
-                        .one();
+        if (data.containsKey(MongoCodeListEntry.CODE_LIST_ENTRY_DATA.inner(CodeListEntryData.CODE).getName())) {
+            CodeList codeList = (CodeList) data.get("codeList");
+            String cleCode =
+                    (String) data.get(MongoCodeListEntry.CODE_LIST_ENTRY_DATA.inner(CodeListEntryData.CODE).getName());
+
+            Optional<MongoCodeListEntry> cle = codeLists.getEntry(codeList.getCodeListData().getCode(), cleCode);
+
+            if (cle.isPresent()) {
+                return mango.select(MongoTranslation.class)
+                            .eq(Translation.TRANSLATION_DATA.inner(TranslationData.OWNER), cle.get().getUniqueName())
+                            .eq(Translation.TRANSLATION_DATA.inner(TranslationData.FIELD),
+                                data.get(Translation.TRANSLATION_DATA.inner(TranslationData.FIELD).getName()))
+                            .eq(Translation.TRANSLATION_DATA.inner(TranslationData.LANG),
+                                data.get(Translation.TRANSLATION_DATA.inner(TranslationData.LANG).getName()))
+                            .eq(Translation.TRANSLATION_DATA.inner(TranslationData.TEXT),
+                                data.get(Translation.TRANSLATION_DATA.inner(TranslationData.TEXT).getName()))
+                            .one();
+            }
         }
 
         return Optional.empty();
