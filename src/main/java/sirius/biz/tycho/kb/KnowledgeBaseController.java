@@ -17,7 +17,7 @@ import sirius.web.http.WebContext;
 import sirius.web.security.LoginRequired;
 import sirius.web.security.UserContext;
 
-@Register(classes = Controller.class)
+@Register(classes = Controller.class, framework = KnowledgeBase.FRAMEWORK_KNOWLEDGE_BASE)
 public class KnowledgeBaseController extends BizController {
 
     @Part
